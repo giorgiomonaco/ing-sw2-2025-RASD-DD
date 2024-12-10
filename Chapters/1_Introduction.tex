@@ -1,0 +1,298 @@
+\section{Purpose}
+\label{sec:purpose}%
+
+As the demand for skilled graduates grows, bridging the gap between academic learning and practical industry experience has become essential. However, students often face challenges in finding internships that align with their skills and career goals, while companies struggle to identify candidates who truly match their specific needs. Traditional job boards and application processes don’t cater to the nuanced requirements of internship placements, leading to mismatches and missed opportunities for both students and employers.
+Students and companies (S\&C) exists to address this gap by providing a tailored matchmaking platform. By aligning students’ skills, experiences, and aspirations with detailed internship roles, S\&C ensures better fit and smoother transitions into the workforce. The platform supports proactive searches, personalized recommendations, and structured selection processes, ultimately helping students gain hands-on experience while allowing companies to find the right talent for their projects. S\&C not only simplifies the internship process but also provides tools for feedback, monitoring, and communication, creating a valuable, structured internship experience that benefits students, companies, and universities alike.
+
+
+\subsection{Goals}
+\label{subsec:goals}%
+
+{[}G1{]}: University students would like to find internships that better
+align with their interests and field of study.
+
+{[}G2{]}: Companies would like to offer internships to students who best
+match the related figure.
+
+{[}G3{]}: Improve communication and coordination between students and
+companies in the selection process.
+
+{[}G4{]}: Evolve the recommendation system through feedback and
+suggestions (provided by students and companies) to improve future
+matches.
+
+{[}G5{]}: Universities would like to monitor internships and handle any
+emerging issues promptly, ensuring a smooth and beneficial experience
+for all parties involved.
+
+\section{Scope}
+\label{sec:scope}%
+
+In this section, we are going to identify the S\&C platform domain. There
+are three main users that interact with the system:~
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \textbf{Students} -- University students seeking internships as part of their academic or career development. They can use S\&C to
+  proactively browse available internships, receive customized recommendations based on their profiles, and interact with companies to begin the application and selection process.
+\item
+  \textbf{Companies} -- Businesses and organizations that offer internships. These companies use S\&C to advertise internship roles with detailed information on project tasks, required skills,
+  technologies, and benefits. S\&C enables companies to receive suitable student profiles automatically, simplifying their candidate search and supporting the structured interview and selection process.
+\item
+  \textbf{Universities} -- Academic institutions that need to monitor
+  and oversee students' internship experiences. Universities use S\&C to
+  track the status and progress of internships, address student
+  concerns, and intervene in issues that may impact the quality of the
+  internship.
+\end{enumerate}
+
+According to the World and Machine paradigm we can identify the Machine
+as the System to be developed and the environment in which S\&C will be
+used as the World. The separation between these two concepts allows us
+to classify the entire phenomena in three different types.
+
+\subsection{World Phenomena}
+\label{subsec:world_phenomena}%
+
+Events that take place in the real world and that the machine cannot
+observe:
+
+{[}WP1{]} The company creates and defines internship opportunities
+independently, describing tasks, required skills, and terms.
+
+{[}WP2{]} The student creates CVs detailing his skills and attitudes.
+
+{[}WP3{]} The company conducts an interview with the student.
+
+{[}WP4{]} The student wants to accept / reject the proposal.
+
+{[}WP5{]} The student or the company encounters problems during the
+internship and wants to report it.~
+
+{[}WP6{]} The university handles the complaint submitted by his student
+or a related company.
+
+\subsection{Machine Phenomena}
+\label{subsec:machine_phenomena}%
+
+Events that take place inside the System and cannot be observed by the
+real world.
+
+{[}MP1{]} The internal processes analyze student profiles and internship
+postings to generate recommendations.~
+
+{[}MP2{]} The recommendation system automatically improves using
+feedback and suggestions.
+
+\subsection{Shared phenomena}
+\label{subsec:shared_phenomena}%
+
+\begin{itemize}
+\item
+  \textbf{World controlled}
+\end{itemize}
+
+Controlled by the world and observed by the machine.
+
+{[}SP1{]} The S /C signs up / logs in to the system.
+
+{[}SP2{]} The C uploads internship details, terms, and benefits, which
+the system then collects.
+
+{[}SP3{]} The S improves/edits his CV based on the suggestions.
+
+{[}SP4{]} The C improves/edits his internship insertion based on the
+suggestions.
+
+{[}SP5{]} The S proactively looks for an internship on the platform, by
+querying a company\textquotesingle s name or a specific position.
+
+{[}SP6{]} The S reviews a C's profile
+
+{[}SP8{]} The S reviews his calendar.
+
+{[}SP6{]} The S surf through the recommended internships~
+
+{[}SP7{]} The S reviews an internship insertion
+
+{[}SP7{]} The S or the C submits feedback and suggestions about the
+matchmaking process.
+
+{[}SP9{]} The S applies for an internship.
+
+{[}SP10{]}The C reviews a candidate's profile
+
+{[}SP11{]}The C sends a contact request in order to offer an internship
+to a recommended student.
+
+{[}SP12{]} The S accepts/refuses a contact request by a company.
+
+{[}SP13{]} The C and the S schedule an interview through the chat
+
+{[}SP6{]} The S and the C finalize the selection process after the
+interview.~
+
+{[}SP{]} The C offers an internship contract to the student after the
+interview.
+
+{[}SP{]}The S accepts/refuses the proposed contract.
+
+{[}SP8{]}The S or the C submits problems, complaints and information
+about the ongoing internship.~
+
+{[}SP9{]} The U monitors the ongoing internship.
+
+{[}SP10{]}The U interrupts the internship.
+
+\begin{itemize}
+\item
+  \textbf{Machine controlled}
+\end{itemize}
+
+Controlled by the machine and observed by the World.
+
+{[}SP17{]} The system analyzes the CV and suggests to the S how to
+improve it.
+
+{[}SP18{]} The system analyzes the Insertion and suggests to the C how
+to improve it.
+
+{[}SP11{]} The system recommends the best internships to the S based on
+his Cv, his attitudes and previously submitted feedback.
+
+{[}SP12{]} The system suggests the best candidates to the company based
+on matching algorithms and keywords.
+
+{[}SP13{]} The system notifies the S when new recommended internships
+become available by sending an email and a notification.
+
+{[}SP14{]} The system notifies the C of potential candidates when new
+CVs become available by sending an email and a notification.
+
+{[}SP20{]} The system asks the S and the company to provide feedback or
+suggestions about the matchmaking process.
+
+{[}SP15{]} The system establishes contact between the S and the C when
+both parties have accepted each other's request.
+
+{[}SP21{]} The system adds to the S\&C calendar the start and the end
+date of the internship after the contract agreement.
+
+{[}SP22{]} The system adds to the S\&C registers in the calendar the
+submission of information, complaint or problem.
+
+\section{Definitions, Acronyms, Abbreviations}
+\label{sec:definition_acronyms_abbreviations}%
+
+\subsection{Definitions}
+\label{subsec:definitions}%
+
+\begin{itemize}
+\item
+  \textbf{Recommendation}: The process of identifying and suggesting
+  internships to students and suitable candidates to companies using
+  keyword searches, statistical analyses, or other matching algorithms.
+\item
+  \textbf{Selection Process}: A structured process following a
+  recommendation in which companies interview and assess students to
+  determine fit.
+\item
+  \textbf{Matching}: The automated or semi-automated process of pairing
+  students with internships based on their profiles and internship
+  requirements.
+\item
+  \textbf{Feedback}: Information provided by students and companies on
+  the quality of the matchmaking process or the internship experience,
+  used to improve recommendations.
+\item
+  \textbf{Internship Monitoring}: Ongoing observation on internship
+  status.
+\item
+  \textbf{Users:} referred to logged-in guests: Universities, Companies
+  and Students
+\item
+  \textbf{Guest:} non logged visitors.
+\item
+  \textbf{S\&C Calendar:} a built-in calendar where all events
+  (submissions, start and end date of internship, interviews) are
+  visible and scheduled.~
+\end{itemize}
+
+\subsection{Acronyms}
+\label{subsec:acronyms}%
+
+\begin{itemize}
+\item
+  \textbf{S\&C}: Students \& Companies
+\item
+  \textbf{UI}: User Interface
+\item
+  \textbf{API}: Application Programming Interface
+\end{itemize}
+
+\subsection{Abbreviations}
+\label{subsec:abbreviations}%
+
+\begin{itemize}
+\item
+  \textbf{{[}G*{]}}: Goal
+\item
+  \textbf{{[}D*{]}}: Domain Assumption
+\item
+  \textbf{{[}R*{]}}: Functional Requirement
+\item
+  \textbf{{[}WP*{]}}: World Phenomena
+\item
+  \textbf{{[}MP*{]}}: Machine Phenomena
+\item
+  \textbf{{[}SP*{]}}: Shared Phenomena
+\item
+  \textbf{{[}UC*{]}}: Use Case
+\item
+  \textbf{{[}S{]}}: Student
+\item
+  \textbf{{[}C{]}}: Company
+\item
+  \textbf{{[}U{]}}: University
+\end{itemize}
+
+\section{Revision history}
+\label{sec:revision_history}%
+
+da aggiungere alla fine
+
+\section{Reference Documents}
+\label{sec:reference_documents}%
+
+The document is based on the following materials:
+
+\begin{itemize}
+\item
+  The specification of the RASD and DD assignment of the Software
+  Engineering II course a.a 2024/2025~
+\item
+  Slides of the course on WeBeep
+\end{itemize}
+
+\section{Document Structure}
+\label{sec:document_structure}%
+
+\paragraph{Introduction}: It aims to give an overview of the project. In
+  particular it's focused on the reasons and goals that are going to be
+  achieved with its development.
+\paragraph{Overall Description}: This section provides a high-level
+  overview of how the S\&C platform operates, describing the roles and
+  interactions of the main users: students, companies, and universities.
+  It categorizes the phenomena in the system using the World and Machine
+  paradigm and outlines assumptions and dependencies within the
+  platform's domain.
+\paragraph{Specific Requirements}: Detailed functional and non-functional
+  requirements for achieving the goals. Moreover, it contains more
+  information useful for developers (i.e constraints about HW and SW)
+\paragraph{Formal Analysis}: Formal modeling of the key phenomena using
+  Alloy.
+\paragraph{Effort Spent}: Overview of the team's time allocation for each
+  document section.
+\paragraph{References}: Bibliography listing all resources,
+  documentation, and software used in preparing this document.
