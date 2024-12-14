@@ -9,11 +9,56 @@ This section is devoted to a specific description of every kind of requirement t
 \label{subsec:User_interfaces}%
 
 
-The S\&C's user interface will be a website, developed in order to be
-used by all the possible users (Universities, Students and Companies).
+The S\&C's user interface will be a website, developed in order to be used by all the possible users (Universities, Students and Companies).
+The following images provide a high-level overview of the interfaces, offering a glimpse into their structure and functionality. A detailed analysis of these interfaces will be presented in the Design Document.
 
-The sing-up page and functionalities after login will be different for
-each category of user.
+\newpage
+
+\paragraph{Access Page:} When a user navigates to the website for the first time, the access page serves as the initial interface. Here, users are prompted to log in using their credentials. If the user does not already have an account, they are provided with an option to register and create a new one. Additionally, universities can also access this page to proceed with their specific login or registration process, ensuring seamless on-boarding for both individual users and institutional entities.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=\linewidth]{Images/UserInterfaces/AccessPage.pdf}
+        \caption{Access Page UI.}
+        \label{fig:access_page_UI}%
+    \end{center}
+\end{figure}
+
+\newpage
+
+\paragraph{Student Homepage:} When a student enters the homepage, they are greeted with an organized layout. On the left side, an overview of their profile is displayed, along with a section highlighting past and upcoming events. On the right side, a toolbar is provided for searching companies, complemented by an overview of recommended companies. At the top of the page, a small toolbar houses icons for easy access to the homepage, chat, notifications, help, settings, and the student’s personal profile.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=\linewidth]{Images/UserInterfaces/SHomepage.pdf}
+        \caption{Student Homepage UI.}        
+        \label{fig:student_homepage_UI}%
+    \end{center}
+\end{figure}
+
+\newpage
+
+\paragraph{Chat page:} When a user navigates to the chat page, they are presented with a clear layout. On the left side, a list of open chats is displayed, allowing quick access to previous conversations. On the center-right side, the selected chat appears, featuring a text input bar, a send button, and a "+" button for additional operations, such as adding information, submitting a complaint, and other actions only for companies.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=\linewidth]{Images/UserInterfaces/SChatpage.pdf}
+        \caption{Chat Page UI.}
+        \label{fig:chat_page_UI}%
+    \end{center}
+\end{figure}
+
+\newpage
+
+\paragraph{Notifications page:} When the user accesses the notifications page, they are presented with a list of notifications they have received, ordered from the most recent to the least. This provides an easy way to stay up-to-date with important alerts and messages.
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=\linewidth]{Images/UserInterfaces/NotificationPage.pdf}
+        \caption{Notifications Page UI.}
+        \label{fig:notifications_page_UI}%
+    \end{center}
+\end{figure}
 
 
 \subsection{Hardware interfaces}
@@ -115,10 +160,10 @@ their skills, experiences, and interests become available.
 {[}R6{]}: The system should allow students to browse available
 internship postings.
 
-{[}R7{]}: The system allows S to visualize the profile of other C.~
+{[}R7{]}: The system allows S to visualize the profile of other C.
 
 {[}R8{]}: The system should allow S to submit applications for specific
-internship postings.~
+internship postings.
 
 {[}R9{]}: The system should allow S to provide feedback, suggestions and
 rating to improve the recommendation process.
@@ -132,7 +177,7 @@ interest is identified.
 applications and final selections.
 
 {[}R13{]}: The system should provide S with a mechanism to report issues
-or complaints related to ongoing internships.~
+or complaints related to ongoing internships.
 
 {[}R14{]}: The system should allow S to review the S\&C Calendar.
 
@@ -164,7 +209,7 @@ to improve the recommendation process.
 interest is identified.
 
 {[}R24{]}: The system should enable C to track the progress of their
-internship selection processes, including applications and decisions.~
+internship selection processes, including applications and decisions.
 
 {[}R25{]}: The system should allow C to submit complaints or information
 related to internships.
@@ -189,7 +234,7 @@ students.
 
 \begin{figure}[H]
     \begin{center}
-        \includegraphics[width=6.5in,height=6.81319in]{Images/UCDiagram.png}
+        \includegraphics[width=\linewidth]{Images/UCDiagram.png}
         \caption{Use Cases Diagram for all the Users.} 
         \label{fig:UnregisteredUC}%
         \end{center}
@@ -202,6 +247,7 @@ students.
 \setcounter{uc}{1}
 \newcommand{\cuc}{\theuc\stepcounter{uc}}
 
+This chapter presents core use cases, showcasing the application's real-world impact and versatility.
 
 \subsubsection*{UC\cuc . Sign Up}
 \begin{center}
@@ -235,6 +281,15 @@ students.
 \end{center}
 
 
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=\linewidth]{Images/SequenceDiagram/SignUpSD.pdf}
+        \caption{Sign Up sequence diagram.}
+        \label{fig:sign_up_seqdiag}%
+    \end{center}
+\end{figure}
+
+
 \subsubsection*{UC\cuc . Login}
 \begin{center}
     \begin{longtable}{|l|p{0.75\linewidth}|}
@@ -263,6 +318,15 @@ students.
 \end{center}
 
 
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=\linewidth]{Images/SequenceDiagram/LoginSD2.pdf}
+        \caption{Login sequence diagram.}
+        \label{fig:login_seqdiag}%
+    \end{center}
+\end{figure}
+
+
 \subsubsection*{UC\cuc . Insert an enhanced Internship Insertion}
 \begin{center}
     \begin{longtable}{|l|p{0.75\linewidth}|}
@@ -273,18 +337,17 @@ students.
         \hline
         \textbf{Entry conditions}   & The C is logged in and wants to post a new insertion.\\
         \hline
-        \textbf{Event Flow}         & 1 - The C goes to his profile page. \\
-        & 2 - The C clicks on “Post”. \\
-        & 3 - The C fills in the forms with all the information needed about his position. \\
-        & 4 - The C clicks on the “Enhance” button. \\
-        & 5 - The system analyzes the insertion and gives suggestions on how to improve project description. \\
-        & 6 - The C reviews the suggestions given by the system and modifies the insertion if needed. \\
-        & 7 - The C clicks on the “Post” button. \\
+        \textbf{Event Flow}         & 1 - The C clicks on “Post” at the bottom-right of his homepage. \\i
+        & 2 - The C fills in the forms with all the information needed about his position. \\
+        & 3 - The C clicks on the “Enhance” button. \\
+        & 4 - The system analyzes the insertion and gives suggestions on how to improve project description. \\
+        & 5 - The C reviews the suggestions given by the system and modifies the insertion if needed. \\
+        & 6 - The C clicks on the “Post” button. \\
         \hline
         \textbf{Exit condition}   & The system publishes the C’s insertion and shows to the C his homepage. \\       
         \hline
         \textbf{Exceptions}       & \begin{itemize}
-            \item The insertion is perfect and there aren’t any suggestions given.
+            \item The insertion is very well-done and there are no suggestions available, so the system shows an error message.
         \end{itemize}\\
         \hline
         \caption{Insert an enhanced Internship Insertion use case.}
@@ -295,9 +358,9 @@ students.
 
 \begin{figure}[H]
     \begin{center}
-        \includegraphics[width=1\linewidth]{Images/image2.png}
-        \caption{Insert an enhanced internship insertion sequence diagram.}
-        \label{fig:insert_an_enanched_internship_insertion_seqdiag}%
+        \includegraphics[width=\linewidth]{Images/SequenceDiagram/InsertInternSD2.pdf}
+        \caption{Insert an enhanced Internship Insertion sequence diagram.}
+        \label{fig:insert_intern_seqdiag}%
     \end{center}
 \end{figure}
 
@@ -310,20 +373,19 @@ students.
         \hline
         \textbf{Actor}              & S\\
         \hline
-        \textbf{Entry conditions}   & The S is logged in and wants to enhance his CV.\\
+        \textbf{Entry conditions}   & The S is logged in, has already uploaded a CV and wants to improve it.\\
         \hline
         \textbf{Event Flow}         & 1 - The S opens his personal profile page. \\
-        & 2 - The S scrolls down near the CV section. \\
-        & 3 - The S clicks on the “Enhance” button. \\
-        & 4 - The system analyzes the CV and gives suggestions on how to improve it. \\
-        & 5 - The S reviews suggestions given by the system. \\
-        & 6 - The S makes some suggested changes on the file of the CV. \\
-        & 7 - The S reuploads a new version of CV. \\
+        & 2 - The S clicks on the “Enhance” button near the CV section. \\
+        & 3 - The system analyzes the CV and gives suggestions on how to improve it. \\
+        & 4 - The S reviews suggestions given by the system. \\
+        & 5 - The S makes some suggested changes on the file of the CV. \\
+        & 6 - The S reuploads a new version of CV. \\
         \hline
         \textbf{Exit condition}   & The system shows the S profile page. \\       
         \hline
         \textbf{Exceptions}       & \begin{itemize}
-            \item The CV is perfect and there aren’t any suggestions given.
+            \item The CV is very well-done and there are no suggestions available, so the system shows an error message.
         \end{itemize}\\
         \hline
         \caption{Enhance CV use case.}
@@ -334,9 +396,9 @@ students.
 
 \begin{figure}[H]
     \begin{center}
-        \includegraphics[width=1\linewidth]{Images/image3.png}
+        \includegraphics[width=\linewidth]{Images/SequenceDiagram/EnhanceCVSD2.pdf}
         \caption{Enhance CV sequence diagram.}
-        \label{fig:enhance_CV_seqdiag}%
+        \label{fig:enhance_cv_seqdiag}%
     \end{center}
 \end{figure}
 
@@ -349,15 +411,14 @@ students.
         \hline
         \textbf{Actor}              & S, C\\
         \hline
-        \textbf{Entry conditions}   & The S (C) wants to look for a recommended internship (student) and is logged in.\\
+        \textbf{Entry conditions}   & The S (C) wants to look for a recommended internship (student) and is on the homepage.\\
         \hline
-        \textbf{Event Flow}         & 1 - The S (C) clicks on the home page. \\
-        & 2 - The S (C) scrolls through the recommended insertions (students). \\
-        & 3 - The S (C) clicks on a company’s insertion (student’s profile). \\
-        & 4 - The system shows the review of the insertion (student). \\
-        & 5 - The S (C) closes the window. \\
-        & 6 - The system shows a pop-up asking the S (C) to submit a feedback, including rating and some comments on the received recommendations. \\
-        & 7 - The S (C) submits his feedback. \\
+        \textbf{Event Flow}         & 1 - The S (C) scrolls through the recommended insertions (students). \\
+        & 2 - The S (C) clicks on a company’s insertion (student’s profile). \\
+        & 3 - The system shows the review of the insertion (student). \\
+        & 4 - The S (C) closes the window. \\
+        & 5 - The system shows a pop-up asking the S (C) to submit a feedback, including rating and some comments on the received recommendations. \\
+        & 6 - The S (C) submits his feedback. \\
         \hline
         \textbf{Exit condition}   & The system saves the feedback to feed the recommendation system and shows the homepage. \\       
         \hline
@@ -373,7 +434,7 @@ students.
 
 \begin{figure}[H]
     \begin{center}
-        \includegraphics[width=1\linewidth]{Images/image4.png}
+        \includegraphics[width=\linewidth]{Images/SequenceDiagram/SubmitFeedbackSD.pdf}
         \caption{Submit a feedback sequence diagram.}
         \label{fig:submit_a_feedback_seqdiag}%
     \end{center}
@@ -388,18 +449,17 @@ students.
         \hline
         \textbf{Actor}              & S\\
         \hline
-        \textbf{Entry conditions}   & The S is logged in and wants to search for a specific C.\\
+        \textbf{Entry conditions}   & The S is on the homepage and wants to search for a specific C.\\
         \hline
-        \textbf{Event Flow}         & 1 - The S clicks on the home page. \\
-        & 2 - The S clicks on the search bar. \\
-        & 3 - The S writes the C’s name and clicks ‘Enter’ on the keyboard or the button ‘Search’. \\
-        & 4 - The system shows a list of the matching results. \\
-        & 5 - The S clicks on the C profile. \\
+        \textbf{Event Flow}         & 1 - The S clicks on the search bar. \\
+        & 2 - The S writes the C’s name and clicks ‘Enter’ on the keyboard or the button ‘Search’. \\
+        & 3 - The system shows a list of the matching results. \\
+        & 4 - The S clicks on the C profile. \\
         \hline
         \textbf{Exit condition}   & The system shows the C profile. \\       
         \hline
         \textbf{Exceptions}       & \begin{itemize}
-            \item The C isn’t registered on the platform.
+            \item The system doesn't find any matching result.
         \end{itemize}\\
         \hline
         \caption{Search for a company use case.}
@@ -410,7 +470,7 @@ students.
 
 \begin{figure}[H]
     \begin{center}
-        \includegraphics[width=1\linewidth]{Images/image5.png}
+        \includegraphics[width=\linewidth]{Images/SequenceDiagram/SearchCompanySD2.pdf}
         \caption{Search for a company sequence diagram.}
         \label{fig:search_for_a_company_seqdiag}%
     \end{center}
@@ -446,7 +506,7 @@ students.
 
 \begin{figure}[H]
     \begin{center}
-        \includegraphics[width=1\linewidth]{Images/image6.png}
+        \includegraphics[width=\linewidth]{Images/SequenceDiagram/ApplySD.pdf}
         \caption{Apply for an internship sequence diagram.}
         \label{fig:apply_for_an_internship_seqdiag}%
     \end{center}
@@ -459,20 +519,21 @@ students.
         \hline
         \textbf{Name}               & Accept a candidate\\
         \hline
-        \textbf{Actor}              & C, eMail provider\\
+        \textbf{Actor}              & C, S, eMail provider\\
         \hline
-        \textbf{Entry conditions}   & The C is correctly logged in and wants to find a new candidate from the ones that applied for the internship.\\
+        \textbf{Entry conditions}   & The C is logged in and wants to find a new candidate from the ones that applied for the internship.\\
         \hline
         \textbf{Event Flow}         & 1 - The C goes on his profile page. \\
-        & 2 - The C clicks on the submitted insertion. \\
-        & 3 - The system shows the review of the insertion. \\
-        & 4 - The C opens the candidates’ section. \\
-        & 5 - The C scrolls through all the possible candidates. \\
-        & 6 - The C finds a S’s profile. \\
-        & 7 - The C clicks on the S’s profile. \\
-        & 8 - The system shows the S profile. \\
-        & 9 - The C decides to accept the S’s profile by clicking on the “Accept” button. \\
-        & 10 - The system sends an eMail to the S notifying him of the decision of the C through the eMail provider. \\
+        & 2 - The C clicks on "Insertion". \\
+        & 3 - The C clicks on the selected insertion post. \\
+        & 4 - The system shows the review of the insertion. \\
+        & 5 - The C opens the candidates’ section. \\
+        & 6 - The C scrolls through all the possible candidates. \\
+        & 7 - The C finds a S’s profile. \\
+        & 8 - The C clicks on the S’s profile. \\
+        & 9 - The system shows the review of the S profile. \\
+        & 10 - The C decides to accept the S’s profile by clicking on the “Accept” button. \\
+        & 11 - The system sends an eMail to the S notifying him of the decision of the C through the eMail provider. \\
         \hline
         \textbf{Exit condition}   & The system creates a chat between the S and the C. \\       
         \hline
@@ -488,7 +549,7 @@ students.
 
 \begin{figure}[H]
     \begin{center}
-        \includegraphics[width=1\linewidth]{Images/image7.png}
+        \includegraphics[width=\linewidth]{Images/SequenceDiagram/AcceptCandidateSD.pdf}
         \caption{Accept a candidate sequence diagram.}
         \label{fig:accept_a_candidate_seqdiag}%
     \end{center}
@@ -505,14 +566,14 @@ students.
         \hline
         \textbf{Entry conditions}   & The S (C) has encountered a problem during the internship period.\\
         \hline
-        \textbf{Event Flow}         & 1 - The S (C) goes to the profile page. \\
-        & 2 - The S (C) clicks on the chat section with the C (S). \\
+        \textbf{Event Flow}         & 1 - The S (C) goes to the chat page. \\
+        & 2 - The S (C) clicks on the chat with the selected C (S). \\
         & 3 - The S (C) clicks on the “+” button. \\
         & 4 - The S (C) clicks on “Submit a Complaint”. \\
         & 5 - The system shows the user a form. \\
         & 6 - The S (C) describes the problem in the form. \\
         & 7 - The S (C) clicks on the “Submit” button. \\
-        & 8 - The system checks if the insertion (description) is not empty. \\
+        & 8 - The system checks if the description is not empty. \\
         & 9 - If the problem insertion is not empty the system sends a notification and an eMail through the eMail provider to the S’s U. \\
         \hline
         \textbf{Exit condition}   & The complaint is submitted. \\       
@@ -527,6 +588,15 @@ students.
 \end{center}
 
 
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=\linewidth]{Images/SequenceDiagram/SubmitComplaintSD.pdf}
+        \caption{Submit a Complaint sequence diagram.}
+        \label{fig:submit_complaint_seqdiag}%
+    \end{center}
+\end{figure}
+
+
 \subsubsection*{UC\cuc . Submit Information}
 \begin{center}
     \begin{longtable}{|l|p{0.75\linewidth}|}
@@ -537,14 +607,14 @@ students.
         \hline
         \textbf{Entry conditions}   & The S (C) has some information to report regarding the ongoing internship.\\
         \hline
-        \textbf{Event Flow}         & 1 - The S (C) goes to the profile page. \\
-        & 2 - The S (C) clicks on the chat section with the C (S). \\
+        \textbf{Event Flow}         & 1 - The S (C) goes to the chat page. \\
+        & 2 - The S (C) clicks on the chat with the selected C (S). \\
         & 3 - The S (C) clicks on the “+” button. \\
         & 4 - The S (C) clicks on “Submit an Information”. \\
         & 5 - The system shows the user a form. \\
         & 6 - The S (C) fills in the form. \\
         & 7 - The S (C) clicks on the “Submit” button. \\
-        & 8 - The systems checks if the insertion is not null. \\
+        & 8 - The system checks if the description is not empty. \\
         & 9 - If the information insertion is not empty, the system sends a notification and an eMail through the eMail provider to the S’s U. \\
         \hline
         \textbf{Exit condition}   & The information is submitted. \\       
@@ -559,6 +629,15 @@ students.
 \end{center}
 
 
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=\linewidth]{Images/SequenceDiagram/SubmitInformationSD.pdf}
+        \caption{Submit Information sequence diagram.}
+        \label{fig:submit_info_seqdiag}%
+    \end{center}
+\end{figure}
+
+
 \subsubsection*{UC\cuc . Look for a student through recommended ones}
 \begin{center}
     \begin{longtable}{|l|p{0.75\linewidth}|}
@@ -570,10 +649,13 @@ students.
         \textbf{Entry conditions}   & The C wants to look for a S and has an open position for an internship.\\
         \hline
         \textbf{Event Flow}         & 1 - The C clicks on the profile page. \\
-        & 2 - The C selects the internship posting for which it wants to find a candidate. \\
-        & 3 - The C starts scrolling through the recommended student’s profiles. \\
+        & 2 - The C clicks on "Insertion". \\
+        & 3 - The C selects the internship posting for which it wants to find a candidate. \\
+        & 4 - The system shows the review of the insertion. \\
+        & 5 - The C opens the candidates’ section. \\
+        & 6 - The system shows the recommended students. \\
         \hline
-        \textbf{Exit condition}   & The C changes page. \\       
+        \textbf{Exit condition}   & The C can look through all the recommended students for that internship. \\       
         \hline
         \textbf{Exceptions}       & \begin{itemize}
             \item There are no recommended S for that internship posting.
@@ -585,13 +667,22 @@ students.
 \end{center}
 
 
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=\linewidth]{Images/SequenceDiagram/LookStudentSD2.pdf}
+        \caption{Look for a student through recommended ones sequence diagram.}
+        \label{fig:look_student_seqdiag}%
+    \end{center}
+\end{figure}
+
+
 \subsubsection*{UC\cuc . Contact a recommended student}
 \begin{center}
     \begin{longtable}{|l|p{0.75\linewidth}|}
         \hline
         \textbf{Name}               & Contact a recommended student\\
         \hline
-        \textbf{Actor}              & C, eMail provider\\
+        \textbf{Actor}              & C, S, eMail provider\\
         \hline
         \textbf{Entry conditions}   & The C wants to send the proposal for an internship to a recommended student.\\
         \hline
@@ -615,22 +706,30 @@ students.
 \end{center}
 
 
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=\linewidth]{Images/SequenceDiagram/ContactStudentSD.pdf}
+        \caption{Contact a recommended student sequence diagram.}
+        \label{fig:contact_student_seqdiag}%
+    \end{center}
+\end{figure}
+
+
 \subsubsection*{UC\cuc . Accept a company}
 \begin{center}
     \begin{longtable}{|l|p{0.75\linewidth}|}
         \hline
         \textbf{Name}               & Accept a company\\
         \hline
-        \textbf{Actor}              & S, eMail provider\\
+        \textbf{Actor}              & S, C, eMail provider\\
         \hline
         \textbf{Entry conditions}   & The C has contacted the S proposing him an internship position and the S wants to accept it.\\
         \hline
-        \textbf{Event Flow}         & 1 - The S goes on his profile page. \\
-        & 2 - The S clicks on the notifications button. \\
-        & 3 - The S scrolls through the list of C that contacted him. \\
-        & 4 - The S clicks on the C’s profile and reviews the internship description. \\
-        & 5 - The S decides to accept the internship by clicking on the “Accept” button. \\
-        & 6 - An email is sent to the C through the eMail provider, notifying them that the student accepted their request. \\
+        \textbf{Event Flow}         & 1 - The S goes on his notification page. \\
+        & 2 - The S scrolls through the list of C that contacted him. \\
+        & 3 - The S clicks on the C’s profile and reviews the internship description. \\
+        & 4 - The S decides to accept the internship by clicking on the “Accept” button. \\
+        & 5 - An email is sent to the C through the eMail provider, notifying them that the student accepted their request. \\
         \hline
         \textbf{Exit condition}   & The system creates a chat between the S and the C. \\       
         \hline
@@ -640,50 +739,13 @@ students.
 \end{center}
 
 
-\subsubsection*{UC\cuc . Interrupt internship}
-\begin{center}
-    \begin{longtable}{|l|p{0.75\linewidth}|}
-        \hline
-        \textbf{Name}               & Interrupt internship\\
-        \hline
-        \textbf{Actor}              & U, eMail provider\\
-        \hline
-        \textbf{Entry conditions}   & The U monitors the internship and reads a complaint.\\
-        \hline
-        \textbf{Event Flow}         & 1 - The U goes on the main page. \\
-        & 2 - The U clicks on the related chat. \\
-        & 3 - The U reviews the complaint. \\
-        & 4 - If the U deems it necessary, clicks on “Interrupt Internship”. \\
-        & 5 - The system sends an eMail through the eMail provider and notifies the S and C about the interruption of the internship. \\
-        \hline
-        \textbf{Exit condition}   & The internship is interrupted and the chat closed. \\       
-        \hline
-        \caption{Interrupt internship use case.}
-        \label{tab: interrupt_internship_use_case}
-    \end{longtable}
-\end{center}
-
-
-\subsubsection*{UC\cuc . Monitor internship}
-\begin{center}
-    \begin{longtable}{|l|p{0.75\linewidth}|}
-        \hline
-        \textbf{Name}               & Monitor internship\\
-        \hline
-        \textbf{Actor}              & U\\
-        \hline
-        \textbf{Entry conditions}   & The U monitors the internship between the C and the S.\\
-        \hline
-        \textbf{Event Flow}         & 1 - The U goes on the main page. \\
-        & 2 - The U clicks on the chat regarding the S and the C. \\
-        & 3 - The system shows the chat and the related complaints or information. \\
-        \hline
-        \textbf{Exit condition}   & The U can monitor the information and issues reported by the other two parties during the internship. \\       
-        \hline
-        \caption{Monitor internship use case.}
-        \label{tab: monitor_internship_use_case}
-    \end{longtable}
-\end{center}
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=\linewidth]{Images/SequenceDiagram/AcceptCompanySD.pdf}
+        \caption{Accept a company sequence diagram.}
+        \label{fig:accept_company_seqdiag}%
+    \end{center}
+\end{figure}
 
 
 \subsubsection*{UC\cuc . Schedule an Interview}
@@ -705,12 +767,21 @@ students.
         \hline
         \textbf{Exit condition}   & An interview event is scheduled and added to both the S’s and the C’s S\&C calendars. \\       
         \hline
-        \textbf{Exceptions}       & The S declines the interview proposal from the C. \\
+        \textbf{Exceptions}       & The S declines the interview proposal from the C, and the system cancel the proposal. \\
         \hline
         \caption{Schedule an Interview use case.}
         \label{tab: schedule_interview_use_case}
     \end{longtable}
 \end{center}
+
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=\linewidth]{Images/SequenceDiagram/ScheduleInterviewSD.pdf}
+        \caption{Schedule an Interview sequence diagram.}
+        \label{fig:schedule_interview_seqdiag}%
+    \end{center}
+\end{figure}
 
 
 \subsubsection*{UC\cuc . Start an Internship}
@@ -725,9 +796,11 @@ students.
         \hline
         \textbf{Event Flow}         & 1 - The C clicks on the “+” button. \\
         & 2 - The C selects “propose internship”. \\
-        & 3 - The S accepts the proposal by selecting the appropriate option. \\
+        & 3 - The C compiles a form selecting the dates of starting and ending of the internship. \\
+        & 4 - The C submits the form and sends it to the S. \\
+        & 5 - The S accepts the proposal by selecting the appropriate option. \\
         \hline
-        \textbf{Exit condition}   & The system adds a “starting internship” to both the S’s and the C’s S\&C calendars. \\       
+        \textbf{Exit condition}   & The system adds the event to both the S’s and the C’s S\&C calendars. \\       
         \hline
         \textbf{Exceptions}       & The S declines the offer and the chat between S and C is closed. \\
         \hline
@@ -735,6 +808,80 @@ students.
         \label{tab: start_internship_use_case}
     \end{longtable}
 \end{center}
+
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=\linewidth]{Images/SequenceDiagram/StartInternSD.pdf}
+        \caption{Start an Internship sequence diagram.}
+        \label{fig:start_internship_seqdiag}%
+    \end{center}
+\end{figure}
+
+
+\subsubsection*{UC\cuc . Monitor internship}
+\begin{center}
+    \begin{longtable}{|l|p{0.75\linewidth}|}
+        \hline
+        \textbf{Name}               & Monitor internship\\
+        \hline
+        \textbf{Actor}              & U\\
+        \hline
+        \textbf{Entry conditions}   & The U monitors the internship between the C and the S.\\
+        \hline
+        \textbf{Event Flow}         & 1 - The U goes on the main page. \\
+        & 2 - The U clicks on the chat regarding the S and the C. \\
+        & 3 - The system shows the chat and the related complaints or information. \\
+        \hline
+        \textbf{Exit condition}   & The U can monitor the information and issues reported by the other two parties during the internship. \\       
+        \hline
+        \caption{Monitor Internship use case.}
+        \label{tab: monitor_internship_use_case}
+    \end{longtable}
+\end{center}
+
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=\linewidth]{Images/SequenceDiagram/MonitorInternSD.pdf}
+        \caption{Monitor Internship sequence diagram.}
+        \label{fig:monitor_intern_seqdiag}%
+    \end{center}
+\end{figure}
+
+
+\subsubsection*{UC\cuc . Interrupt internship}
+\begin{center}
+    \begin{longtable}{|l|p{0.75\linewidth}|}
+        \hline
+        \textbf{Name}               & Interrupt internship\\
+        \hline
+        \textbf{Actor}              & U, S, C, eMail provider\\
+        \hline
+        \textbf{Entry conditions}   & The U monitors the internship and reads a complaint.\\
+        \hline
+        \textbf{Event Flow}         & 1 - The U goes on the main page. \\
+        & 2 - The U clicks on the related chat. \\
+        & 3 - The U reviews the complaint. \\
+        & 4 - If the U deems it necessary, clicks on “Interrupt Internship”. \\
+        & 5 - The system sends an eMail through the eMail provider and notifies the S and C about the interruption of the internship. \\
+        \hline
+        \textbf{Exit condition}   & The internship is interrupted and the chat closed. \\       
+        \hline
+        \caption{Interrupt internship use case.}
+        \label{tab: interrupt_internship_use_case}
+    \end{longtable}
+\end{center}
+
+
+\begin{figure}[H]
+    \begin{center}
+        \includegraphics[width=\linewidth]{Images/SequenceDiagram/InterruptInternSD.pdf}
+        \caption{Interrupt Internship sequence diagram.}
+        \label{fig:interrupt_intern_seqdiag}%
+    \end{center}
+\end{figure}
+
 
 
 \subsection{Mapping on goals}
