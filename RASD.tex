@@ -74,31 +74,38 @@
 \usepackage{rotating}
 \usepackage{listings}
 \usepackage{hyperref}
+\input{Configuration_Files/alloy.sty}
 \fancyhf{}
 
 % Input of configuration file. Do not change config.tex file unless you really know what you are doing. 
 \input{Configuration_Files/config}
 
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+\lstset{frame=tb,
+    language=alloy,
+    aboveskip=3mm,
+    belowskip=3mm,
+    showstringspaces=false,
+    columns=flexible,
+    basicstyle={\small\ttfamily},
+    numbers=none,
+    numberstyle=\tiny\color{gray},
+    keywordstyle=\bf\color{blue},
+    commentstyle=\it\color{dkgreen},
+    stringstyle=\color{mauve},
+    breaklines=true,
+    breakatwhitespace=true,
+    tabsize=3
+}
+
 %----------------------------------------------------------------------------
 %	NEW COMMANDS DEFINED
 %----------------------------------------------------------------------------
 
-%\lstset{frame=tb,
-%    language=alloy,
-%    aboveskip=3mm,
-%    belowskip=3mm,
-%    showstringspaces=false,
-%    columns=flexible,
-%    basicstyle={\small\ttfamily},
-%    numbers=none,
-%    numberstyle=\tiny\color{gray},
-%    keywordstyle=\bf\color{blue},
-%    commentstyle=\it\color{dkgreen},
-%    stringstyle=\color{mauve},
-%    breaklines=true,
-%    breakatwhitespace=true,
-%    tabsize=3
-%}
+
 
 % EXAMPLES OF NEW COMMANDS
 %\newcommand{\bea}{\begin{eqnarray}} % Shortcut for equation arrays
@@ -195,6 +202,20 @@
     \label{ch:specific_requirements}%
     \input{Chapters/3_Specific_Requirements}
 
+
+    \chapter{Formal Analysis Using Alloy}
+    \label{ch:formal_analysis_alloy}%
+    \input{Chapters/4_Formal_Analysis_Using_Alloy}
+
+
+    \chapter{Effort Spent}
+    \label{ch:effort_spent}%
+    \input{Chapters/5_Effort_Spent}
+
+
+    \chapter{References}
+    \label{ch:references}%
+    \input{Chapters/6_References}
 
 
 % LIST OF FIGURES
