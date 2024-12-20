@@ -1,7 +1,7 @@
 This section is devoted to a specific description of every kind of requirement the system has to deal with in order to achieve all the functionalities described.
 
 
-\section{ External Interface Requirement}
+\section{External Interface Requirement}
 \label{sec:external_interface_requirements}%
 
 
@@ -12,9 +12,19 @@ This section is devoted to a specific description of every kind of requirement t
 The S\&C's user interface will be a website, developed in order to be used by all the possible users (Universities, Students and Companies).
 The following images provide a high-level overview of the interfaces, offering a glimpse into their structure and functionality. A detailed analysis of these interfaces will be presented in the Design Document.
 
+
+\paragraph{Access Page:} When a user navigates to the website for the first time, the access page (Figure 3.1) serves as the initial interface. Here, users are prompted to log in using their credentials. If the user does not already have an account, they are provided with an option to register and create a new one. Additionally, universities can also access this page to proceed with their specific login or registration process, ensuring seamless on-boarding for both individual users and institutional entities.
+
+
+\paragraph{Student Homepage:} When a student enters the homepage (Figure 3.2), they are greeted with an organized layout. On the left side, an overview of their profile is displayed, along with a section highlighting past and upcoming events. On the right side, a toolbar is provided for searching companies, complemented by an overview of recommended companies. At the top of the page, a small toolbar houses icons for easy access to the homepage, chat, notifications, help, settings, and the student’s personal profile.
+
 \newpage
 
-\paragraph{Access Page:} When a user navigates to the website for the first time, the access page serves as the initial interface. Here, users are prompted to log in using their credentials. If the user does not already have an account, they are provided with an option to register and create a new one. Additionally, universities can also access this page to proceed with their specific login or registration process, ensuring seamless on-boarding for both individual users and institutional entities.
+\paragraph{Chat page:} When a user navigates to the chat page (Figure 3.3), they are presented with a clear layout. On the left side, a list of open chats is displayed, allowing quick access to previous conversations. On the center-right side, the selected chat appears, featuring a text input bar, a send button, and a "+" button for additional operations, such as adding information, submitting a complaint, and other actions only for companies.
+
+
+\paragraph{Notifications page:} When the user accesses the notifications page (Figure 3.4), they are presented with a list of notifications they have received, ordered from the most recent to the least. This provides an easy way to stay up-to-date with important alerts and messages.
+
 
 \begin{figure}[H]
     \begin{center}
@@ -24,33 +34,21 @@ The following images provide a high-level overview of the interfaces, offering a
     \end{center}
 \end{figure}
 
-\newpage
-
-\paragraph{Student Homepage:} When a student enters the homepage, they are greeted with an organized layout. On the left side, an overview of their profile is displayed, along with a section highlighting past and upcoming events. On the right side, a toolbar is provided for searching companies, complemented by an overview of recommended companies. At the top of the page, a small toolbar houses icons for easy access to the homepage, chat, notifications, help, settings, and the student’s personal profile.
-
 \begin{figure}[H]
     \begin{center}
-        \includegraphics[width=\linewidth]{Images/UserInterfaces/SHomepage.pdf}
+        \includegraphics[width=0.9\linewidth]{Images/UserInterfaces/SHomepage.pdf}
         \caption{Student Homepage UI.}        
         \label{fig:student_homepage_UI}%
     \end{center}
 \end{figure}
 
-\newpage
-
-\paragraph{Chat page:} When a user navigates to the chat page, they are presented with a clear layout. On the left side, a list of open chats is displayed, allowing quick access to previous conversations. On the center-right side, the selected chat appears, featuring a text input bar, a send button, and a "+" button for additional operations, such as adding information, submitting a complaint, and other actions only for companies.
-
 \begin{figure}[H]
     \begin{center}
-        \includegraphics[width=\linewidth]{Images/UserInterfaces/SChatpage.pdf}
+        \includegraphics[width=0.9\linewidth]{Images/UserInterfaces/SChatpage.pdf}
         \caption{Chat Page UI.}
         \label{fig:chat_page_UI}%
     \end{center}
 \end{figure}
-
-\newpage
-
-\paragraph{Notifications page:} When the user accesses the notifications page, they are presented with a list of notifications they have received, ordered from the most recent to the least. This provides an easy way to stay up-to-date with important alerts and messages.
 
 \begin{figure}[H]
     \begin{center}
