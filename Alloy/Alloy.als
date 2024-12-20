@@ -5,412 +5,281 @@ var submit: lone Complaint
 sig Internship{
 var candidates: set Student,
 var status: InternshipStatus,
-var worker: lone Student,
-var uploadedBy: lone Company
+var interview:set Student
 }
 
-enum InternshipStatus {notUploaded, free, ongoing, interrupted}
+enum InternshipStatus {notUploaded,free, ongoing, interrupted}
 
 sig Company extends User{
-var uploaded: set Internship,
+var upload: set Internship
 }
 
 sig Student extends User{
 university: one University,
-var internship: lone Internship,
+var internship: lone Internship
 }
 
 sig University{
-enrolledStudents: set Student
-}
-
-one sig Interview {
-var participants: Internship -> Student  
+var interrupt:set Internship
 }
 
 sig Complaint{
-var submittedBy: lone User,
 var referredTo: lone Internship,
 var status: ComStatus
 }
 
 enum ComStatus {notSubmitted,notHandled,Handled}
---------------
-//FACTS
+--------------------------------
+////////////PREDICATES/////////////////////
+pred show{}
 
-//if the internship is ongoing there should be a worker assigned and no more canidates
-fact OnGoingNeedWorkerNoCandidates{
-always(all i: Internship |  
-                    i.status = ongoing iff (i.worker!=none and i.candidates=none ))
-}
-
-//correlation between uploaded of i by c
-fact NoUploadedByNoUploaded{
-always( all i:Internship, c:Company| 
-                   c in i.uploadedBy iff i in c.uploaded) 
-}
-
-//if the internship isn't yet upload,it can't have uploadedBy
-fact NoUpNoUploadedStatus{
-always(all i:Internship| 
-                    i.uploadedBy=none iff i.status=notUploaded)
-}
-
-//if the internship isn't yet uploaded, it can't have worker or candidates
-fact NotUploaded{
-always(all i:Internship| 
-                   i.status=notUploaded implies i.candidates=none and i.worker=none)
-}
---------------------
-//STATUS MANAGERS
-
-fact StateChanges{
-always(all i:Internship| 
-                   i.status=free and i.status'=ongoing implies 
-                                  acceptCandidate[i.uploadedBy,i.worker',i])
-}
-
-fact StateChanges2{
-always(all i:Internship| 
-                   i.status=notUploaded and i.status'=free implies 
-                                            publishInternship[i.uploadedBy',i])
-}
-
-fact StateChanges3{
-always(all i:Internship, com:Complaint|
-               (i in com.referredTo and i.status=ongoing and i.status'=interrupted) implies 
-                                                                     interruptInternship[i.worker.university,com])
-}
-
-fact StateChanges4{
-always(no i:Internship| (i.status=ongoing and i.status'=free) 
-                             or (i.status=notUploaded and i.status'=ongoing) 
-                            or (i.status=notUploaded and i.status'=interrupted)
-                             or(i.status=free and i.status'=notUploaded))
-}
--------
-
-//correlation between students and relatives universities
-fact CorrelationUniStu{
-    always(all s: Student, u: University | 
-        (s in u.enrolledStudents) iff (s.university = u))
-}
-
-//Correlation between worker and internship attributes
-fact CorrelationWorkerIntern{
-always (all i: Internship, s: Student| 
-                (s in i.worker and i.status=ongoing) iff i in s.internship)
-}
-
-//The same internship cannot be published by two different companies.
-fact NoSameInternship{
-always(all disj c1,c2: Company| 
-                   (c1.uploaded & c2.uploaded)=none)
-}
-
-//If a complaint reffred to an interrupted internship so interruptINternship happened
-fact InterruptSoInterrupted{
-always(all com: Complaint, i: Internship| 
-                     (com.referredTo = i and i.status = interrupted) implies
-                                            once interruptInternship[i.worker.university, com])
-}
-
-//Correlation between interrupted internship status and relative handled complaint
-fact InterruptedHandled{
-always(all com: Complaint, i: com.referredTo| 
-                 i.status = interrupted iff com.status = Handled)
-}
-
-//Two user can't submit the same complaint
-fact NoSameUserComplaint{
-always(all disj u1,u2:User| #(u1.submit & u2.submit)<1)
-}
-
-//If there is an interview, it means the student has applied for that internship.
-fact InterviewSoCandidate{
-always( all s: Student, i: Internship | 
-                      s in i.(Interview.participants) implies s in i.candidates)
-}
-
-//An unsubmitted complaint is empty.
-fact Notsubmittednoattributes{ 
-always(all com:Complaint| 
-                  com.status=notSubmitted iff 
-                                 (com.submittedBy=none and com.referredTo=none))
-}
-
-//There is no submitted complaint that is not related to an internship.
-fact submittedButNotReferred{
-always(no com: Complaint |
-                   com.status != notSubmitted and com.referredTo = none)
-}
-
-//If the complaint is handled, the connection between the student and the internship must be terminated.
-fact handledComplaint{
-always(all com: Complaint| 
-             com.status = Handled implies 
-                      (com.referredTo.worker.internship = none and com.referredTo.worker = none))
-}
-
-//If the internship is interrupted, there are no longer any candidates or workers.
-fact InterruptedSoNoMoreAvailable{
-always(all i: Internship|
-                 i.status = interrupted implies 
-                            (i.candidates = none and i.worker=none))
-}
-
-//There is no student who submits a complaint about an internship for which they are not a worker.
-fact WorkerSoSubmitCompliant{
-always(no s: Student, com: Complaint, i: com.referredTo| 
-                                       i.worker != s and com.submittedBy =s)  
-}
-
-//Complaint should referred to interrupted or ongoing internship
-fact ComplaintSoINterruptedOrOngoing{
-always(all com:Complaint, i: Internship | 
-                           com.referredTo = i implies 
-                                     (i.status=interrupted or i.status= ongoing))
-}
-
-
-//One complaint per student
-fact OneComplaintPerStudent{
-always(all s:Student| #s.submit<2)
-}
-
-//An complaint per company per internship
-fact oneComplaintPerInternshipByCompany {
-always(all c: Company, i: Internship | 
-        lone com: Complaint | 
-               com.referredTo = i and com.submittedBy = c)
-}
-
-//Student can submit a complaint only if he has that internship linked
-fact ConditionToSubmitStudent{
-always(all s:Student, com: Complaint|
-                     s in com.submittedBy implies 
-                                       com.referredTo = s.internship) 
-}
-
-
-//Complaints can only be submitted by copmany if it is your own internship.
-fact ConditionToSubmitCompany{
-always(all c:Company, com:Complaint| 
-                            c in com.submittedBy implies 
-                                   (com.referredTo in c.uploaded and com.referredTo.status=ongoing))
-}
-
-//An internship is interrupted only if there is a complaint in the "handled" state that concerns it.
-fact InterruptedSoHandled{
-always(all i: Internship| 
-                   (i.status = interrupted) iff 
-                         (some com: Complaint| com.referredTo = i and com.status = Handled))
-}
-
-//If a complaint is not handled it means that has been submitted
-fact NosubmittedNoSubmittedBy{
-always(all com:Complaint| 
-           com.status=notHandled implies com.submittedBy!=none)
-}
-
-//if a students is a worker can't be also a candidate for other available internships
-fact IfWorkerNoCandidate{
-always(all s:Student, i:Internship|
-                       s.internship!=none implies s not in i.candidates)  
-}
-
-//Define the rules for submitting a complaint by a student and by a company
-fact SubmittedByReferred{
-always(all com:Complaint,c:Company, s:Student| 
-               s in com.submittedBy implies s.internship in com.referredTo or 
-                                   c in com.submittedBy implies com.referredTo in c.uploaded)  
-}
-
-//Correlation between submit and submittedBy attributes
-fact SubmittedByandSubmit{
-always(all com:Complaint,u:User| 
-            com in u.submit implies com.submittedBy=u)
-}
-
-
-//if the interhsip is free, it can't have worker
-fact FreeNoWorker{
-always(all i:Internship| i.status=free implies i.worker=none )
-}
-
-//Correlation between submit and submittedBy attributes
-fact SubmittedByandSubmit{
-always(all com:Complaint,u:User| 
-            com in u.submit iff com.submittedBy=u)
-}
-
----------------------------------------------------------------------
-//PREDICATI
-
-pred publishInternship[c: Company, i: Internship]{
-//precond
+pred uploadInternship[c: Company, i: Internship] {
+ //pre
 i.status=notUploaded
-
-//postcond
-c.uploaded' = c.uploaded + i'
-i.uploadedBy'=c'
-i.candidates' = none
-i.status' = free
+//post
+  c.upload'=c.upload+i'
+  i.status' = free
+#Complaint=0
 }
 
-pred apply[s:Student, i: Internship]{
-//precond
+pred apply[s:Student,i:Internship]{
+//pre
 s not in i.candidates
 s.internship=none
 i.status=free
 
-//postcond
-all i1:Internship|i1!=i implies i1.candidates'=i1.candidates
-i.candidates'=i.candidates+s
+//post
+i.~upload'=i.~upload
+i.candidates'=i.candidates+s'
+i.status'=free
+s.internship'=none
+#Complaint=0
+}
+
+pred scheduleInterview[s:Student, i:Internship]{
+//pre
+s not in i.interview
+s in i.candidates
+s.internship=none
+i.status=free
+
+//post
+i.~upload'=i.~upload
 i.status'=i.status
+i.interview'=i.interview+s'
 s.internship'=s.internship
-#Student<2
-#Complaint<2
-#Internship<2
+i.candidates'=i.candidates
+#Complaint=0
 }
 
-
-pred acceptCandidate[c: Company, s: Student, i: Internship]{
-//precond
-i in c.uploaded
+pred acceptCandidate[s:Student, i:Internship]{
+//pre
 s in i.candidates
-s in i.(Interview.participants)
-i.status = free
-s.internship = none
+s in i.interview
 
-//postcond
-(all i1:Internship| s in i1.candidates implies s' not in i1.candidates')
-(all i2: Internship | i2 != i implies (i2.candidates' = i2.candidates and i2.status' = i2.status))
-i.candidates' = none
-i.status' = ongoing
-i.worker' = s'
-s.internship'=i'
-#Student<2
-#Complaint<2
-#Internship<2
-}
-
-pred scheduleInterview[c: Company, s: Student, i: Internship, inter: Interview] {
-//precond
-not (i->s) in inter.participants
-i in c.uploaded
-s in i.candidates
-i.worker = none
-s.internship = none
-i.status = free
-
-//postcond
-inter.participants' =  inter.participants + (i->s)
-s.internship' = s.internship
-(all i1: Internship | i1 != i implies (i1.candidates' = i1.candidates and i1.status' = i1.status))
-i.candidates' = i.candidates
-i.worker' = i.worker
-i.status' = i.status
-c.uploaded' = c.uploaded
-#Student<2
-#Complaint<2
-#Internship<2 
+//post
+i.~upload'=i.~upload
+i.status'=ongoing
+s.internship'=i
+i.candidates'=none
+i.interview'=none
+#Complaint=0
 }
 
 pred submitComplaint[com:Complaint, u:User, i:Internship]{
-//precond
-(u in i.worker or u in i.uploadedBy)
+//pre
 com.status=notSubmitted
-com not in User.submit
+i in u.internship or i in u.upload
+i.status=ongoing
 
-//postcond
-i'.status = i.status
+//post
+i.status'=i.status
 com.referredTo'=i
-com.submittedBy'=u'
-u.submit'=com'
 com.status'=notHandled
-#Student<2
-#Complaint<2
-#Internship<2
+u.submit'=u.submit+com
 }
 
-pred interruptInternship[u: University, com: Complaint]{
-//precond
-com.referredTo.worker in u. enrolledStudents
-com.referredTo.status = ongoing
-com.status = notHandled
+pred interruptInternship[com:Complaint, i:Internship]{
+//pre
+com.referredTo=i
+com.status=notHandled
+i.status=ongoing
 
-//postcond
-com.referredTo.status' = interrupted
-com.referredTo.worker.internship' = none
-com.referredTo.worker' = none
-com.referredTo' = com.referredTo
-com.referredTo.uploadedBy' = com.referredTo.uploadedBy
-com.status' = Handled
-all i:Internship| i.candidates'=i.candidates and i.uploadedBy'=i.uploadedBy
-#Student<2
-#Complaint<2
-#Internship<2
+//post
+i.status'=interrupted
+i.candidates'=i.candidates
+i.~internship'=none
+i.interview'=i.interview
+com.status'=Handled
+com.referredTo'=com.referredTo
+i.~internship.university.interrupt'=i.~internship.university.interrupt+i'
 }
 
-
-
-pred InternshipStateChanges[i:Internship]{
-i.status=notUploaded; i.status=free;i.status=free; i.status=ongoing;i.status=ongoing; i.status=interrupted
-#Student<2
-#Complaint<2
-#Internship<2
+pred internshipStatusChange[i:Internship]{
+i.status=notUploaded; i.status=free; i.status=ongoing; i.status=interrupted
+#Internship=1
 }
 
-
-pred ComplaintStateChanges[com:Complaint]{
+pred complaintStatusChange[com:Complaint]{
 com.status=notSubmitted; com.status=notHandled; com.status=Handled
-#Student<2
-#Complaint<2
-#Internship<2
+#Complaint=1
 }
-
-pred show{}
 
 run show
-run publishInternship 
-run apply 
-run scheduleInterview 
-run acceptCandidate 
-run submitComplaint 
-run interruptInternship 
-run InternshipStateChanges
-run ComplaintStateChanges 
--------------------------------------------
-//ASSERTIONS
+run uploadInternship
+run apply
+run scheduleInterview
+run acceptCandidate
+run submitComplaint
+run interruptInternship
+run internshipStatusChange
+run complaintStatusChange
+-------------------------------------------------------------------------------------------------
+///////////FACTS////////////////
 
-assert NoStudentOutOfUniversity{
- no s:Student |s.university=none
+------INTERNSHIP STATUS------------------------
+fact OnGoing{
+always(all i:Internship| i.status=ongoing iff i.~internship!=none and i.candidates=none and i.interview=none)
 }
-check NoStudentOutOfUniversity
 
-assert InterruptesSoComplaintHandled{
-no com:Complaint, i:Internship| i in com.referredTo and com.status=Handled and i.status!=interrupted
+fact NotUploaded{
+always(all i:Internship| i.status=notUploaded implies i.candidates=none 
+                                                                               and i.interview=none
+                                                                                            and i.~internship=none
+                                                                                                     and i.~upload=none)
 }
-check InterruptesSoComplaintHandled
 
-assert ComplaintNotSubmitted{
-no com:Complaint| com.status=notSubmitted and com.referredTo!=none
+fact Free{
+always(all i:Internship| i.status=free implies i.~internship=none)
 }
-check InterruptesSoComplaintHandled
 
-assert InternshipNotUploaded{
-no i:Internship| i.status=notUploaded and i.candidates!=none
+fact Interrupted{
+always(all i:Internship| i.status=interrupted implies 
+                                                  i.~internship=none and 
+                                                                 i.candidates=none and
+                                                                                  i.interview=none)
 }
-check InternshipNotUploaded
 
-assert InternshipOngoing{
-no i:Internship| i.status=ongoing and i.candidates!=none and i.worker=none
+------------
+///////////////COMPLAINT STATUS//////////////
+fact NotSubmitted{
+always(all com:Complaint| com.status=notSubmitted implies 
+                                                                     com.referredTo=none and
+                                                                                       com.~submit=none)
 }
-check InternshipOngoing
 
-assert submittedByReferredTo{
-no com:Complaint| com.referredTo not in com.submittedBy.uploaded and 
-                                              com.referredTo not in com.submittedBy.internship
+fact notHandled{
+always(all com:Complaint| com.status=notHandled implies
+                                                            (com.referredTo in com.~submit.internship or 
+                                                                        com.referredTo   in com.~submit.upload) and
+                                                                                                                  com.~submit!=none and 
+                                                                                                                          com.referredTo.status=ongoing)
 }
-check submittedByReferredTo
+
+fact Handled{
+always(all com:Complaint| com.status=Handled implies 
+                                                     com.referredTo.status=interrupted and
+                                                                        com.referredTo.~internship=none)
+}
+
+///////////////////////////////////
+fact NoStrangeInternship{
+always(no i:Internship| i.status!=notUploaded and i.~upload=none)
+}
+
+fact OneComplaintPerStudent{
+always( all s:Student| #(s.submit)<2)
+}
+
+fact OnlyOneSubmitter{
+always(all com:Complaint| lone u:User| com in u.submit)
+}
+
+fact ComplaintMustReferredToIfSubmitted{
+always(all com:Complaint| com.status=Handled implies 
+                                                (com.referredTo!=none and 
+                                                                           com.referredTo.status=interrupted))
+}
+
+fact ComplaintMustReferredToIfSubmitted2{
+always(all com:Complaint| com.status=notHandled implies 
+                                                     (com.referredTo!=none and 
+                                                                     com.referredTo.status=ongoing))
+}
+
+fact OneWorker{
+always(all i:Internship|lone s:Student| i in s.internship)
+}
+
+fact InterruptOnlyHandled{
+always(all i:Internship, com:Complaint |i.status=interrupted implies 
+                                                                     i in com.referredTo and
+                                                                                             com.status=Handled) 
+                                                                                                                               
+}
+
+fact InterruptInterrupted{
+always(all i:Internship|i in University.interrupt iff i.status=interrupted)
+}
+
+fact OneInternshipOneCompany{
+always(all disj c1,c2: Company| #(c1.upload & c2.upload)<1)
+}
+
+fact ConditionToInterview{
+always(all i:Internship| i.interview in i.candidates)
+}
+
+fact Interruption{
+always(all i:Internship| i.status=ongoing and i.status'=interrupted implies
+                                                                              i' in i.~internship.university.interrupt')
+}
+
+fact ConditionToSubmit{
+always(all com: Complaint, i:Internship, c:Company| i in com.referredTo and c in i.~upload implies i in c.upload)
+}
+
+///////////////INTERNSHIP STATUS TRANSITION/////////////////////
+fact InternshipStateChange1{
+always(no i:Internship|i.status=notUploaded and (i.status'=ongoing or i.status'=interrupted))
+}
+
+fact InternshipStateChange2{
+always(no i:Internship|i.status=free and (i.status'=notUploaded or i.status'=interrupted))
+}
+
+fact InternshipStateChange3{
+always(no i:Internship|i.status=ongoing and (i.status'=free or i.status'=notUploaded))
+}
+
+fact InternshipStateChange4{
+always(no i:Internship|i.status=interrupted and (i.status'=free or i.status'=notUploaded or i.status'=ongoing))
+}
+///////////////COMPLAINT STATUS TRANSITION/////////////////////
+fact ComplaintStateChange1{
+always(no com:Complaint|com.status=notSubmitted and com.status'=Handled)
+}
+
+fact ComplaintStateChange2{
+always(no com:Complaint|com.status=notHandled and com.status'=notSubmitted)
+}
+
+fact ComplaintStateChange2{
+always(no com:Complaint|com.status=Handled and (com.status'=notHandled or com.status'=notSubmitted))
+}
+//////////////ASSERTIONS/////////////////////////
+assert noComplaintReferredToWrong{
+always(all com:Complaint, u:User| (u in com.referredTo.~upload and u in Student implies u.internship in com.referredTo) or
+                                                  (u in com.referredTo.~upload and u in Company implies u.upload in com.referredTo))
+}
+check noComplaintReferredToWrong
+
+assert  OneComplaintOneSubmitter{
+always( no disj u1,u2:User| #(u1.submit & u2.submit)>1)
+}
+check OneComplaintOneSubmitter
+
+assert  OneInternshipOneSubmitter{
+always( no disj c1,c2:Company| #(c1.upload & c2.upload)>1)
+}
+check OneInternshipOneSubmitter
