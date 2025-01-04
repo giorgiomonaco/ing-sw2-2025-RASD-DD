@@ -1,0 +1,90 @@
+In this chapter is highlighted the relation with the functional requirements, introduced in the RASD but re-described in this section, and the components of the application.
+
+For a more meaningful and linear analysis, the relation highlighted is only between functional requirements and sub-components of the Application Server, except from the Main Controller that, as explained before, is introduced for simplifying interaction between Web Server and back-end, so it should have been involved in every action.
+
+Only for some requirements related exclusively to visualize some data, is listed the \textit{DB} as the component linked.
+
+\vspace{1cm}
+
+\newcounter{req}
+\setcounter{req}{1}
+\newcommand{\creq}{\thereq\stepcounter{req}}
+\begin{center}
+    \begin{longtable}{|l|p{0.5\linewidth}|p{0.4\linewidth}|}
+        \hline
+        \textbf{Req ID} & \textbf{Description} & \textbf{Components} \\
+        \hline
+        [R\creq] & The system should allow an unregistered guest to sign up. & Account Manager \newline (:User Registration Manager)\\
+        \hline
+        [R\creq] & The system should allow registered students to log in. & Account Manager \newline (:Authenticator)\\
+        \hline
+        [R\creq] & The system should allow students to insert their CVs and manage their profile information. & Account Manager \newline (:Account Updater)\\
+        \hline
+        [R\creq] & The system should provide personalized suggestions to students for enhancing their CVs to improve their chances of being selected. & Account Manager \newline (:Account Updater), \newline Enhance Manager \newline (:CVEnhancer) \\
+        \hline
+        [R\creq] & The system should notify students when internships matching their skills, experiences, and interests become available. & Recommendation Manager \newline (:Student Recommender), \newline Notification Manager\\
+        \hline
+        [R\creq] & The system should allow students to browse available internship postings. & \textit{DB}\\
+        \hline
+        [R\creq] & The system allows S to visualize the profile of other C. & \textit{DB}\\
+        \hline
+        [R\creq] & The system should allow students to apply only for open internships. & Internship Manager \newline (:Candidates Manager)\\
+        \hline
+        [R\creq] & The system should allow S to provide feedback, suggestions and rating to improve the recommendation process. & Recommendation Manager \newline (:Feedback Manager)\\
+        \hline
+        [R\creq] & The system allows S to establish a chat with C when mutual interest is identified. & Chat Manager \newline (:Messages Manager)\\
+        \hline
+        [R\creq] & The system should assist S in scheduling interviews. & Chat Manager \newline (:Interview Manager, :Messages Manager)\\
+        \hline
+        [R\creq] & The system should allow S to track the status of their applications and final selections. & Chat Manager \newline (:Messages Manager)\\
+        \hline
+        [R\creq] &  The system should not allow a student already engaged in an internship to apply for other internships. & Internship Manager \newline (:Candidates Manager)\\
+        \hline
+        [R\creq] &  The system should provide S with a mechanism to report info or complaints related to the ongoing internship they are working on. & Reporter Manager\\
+        \hline
+        [R\creq] & The system allows a maximum of one unresolved complaint per S during an ongoing internship. & Reporter Manager \newline (:Complaint Manager)\\
+        \hline
+        [R\creq] & The system should allow S to review the S\&C Calendar. & Calendar Manager\\
+        \hline
+        [R\creq] & The system should insert the S’s events on the S\&C Calendar. & Calendar Manger\\
+        \hline
+        [R\creq] & The system should allow registered companies to log in. & Account Manager \newline (:Authenticator)\\
+        \hline
+        [R\creq] & The system should allow C to manage their organization profile. & Account Manager \newline (:Account Updater)\\
+        \hline
+        [R\creq] & The system should allow C to post new internship opportunities, specifying details such as required skills, tasks, and benefits. & Internship Manager \newline (:Internship Updater)\\
+        \hline
+        [R\creq] & The system should provide suggestions to C to improve their internship postings, making them more appealing to S. & Enhance Manager \newline (:Internship Enhancer)\\
+        \hline
+        [R\creq] & The system allows C to visualize the profile of other Users. & \textit{DB}\\
+        \hline
+        [R\creq] & The system should inform C about the availability of S CVs corresponding to their needs. & Recommendation Manager \newline (:Internship Recommender),\newline Notification Manager\\
+        \hline
+        [R\creq] & The system should allow C to provide feedback and suggestions to improve the recommendation process. & Recommendation Manager \newline (:Feedback Manager)\\
+        \hline
+        [R\creq] & The system allows C to establish a chat with S when mutual interest is identified. & Chat Manager \newline (:Messages Manager)\\
+        \hline
+        [R\creq] & The system should allow only one worker per internship. & Internship Manager \newline (:Candidates Manager) \\
+        \hline
+        [R\creq] & The system should enable C to track the progress of their internship selection processes, including applications and decisions. & Chat Manager \newline (:Messages Manager)\\
+        \hline
+        [R\creq] & The system should allow C to submit complaints or information related to their ongoing internships. & Reporter Manager\\
+        \hline
+        [R\creq] & The system allows a maximum of one unresolved complaint per C during an ongoing internship. & Reporter Manager \newline (:Complaint Manager)\\
+        \hline
+        [R\creq] & The system should not allow applications for C’s internships that are currently ongoing & Internship Manager \newline (:Candidates Manager)\\
+        \hline
+        [R\creq] & The system should allow C to review the S\&C Calendar. & Calendar Manager\\
+        \hline
+        [R\creq] & The system should insert the C’s events on the S\&C Calendar. & Calendar Manager\\
+        \hline
+        [R\creq] & The system should allow U to log in. & Account Manager \newline (:Authenticator) \\
+        \hline
+        [R\creq] & The system should allow U to monitor internships of their students. & Chat Manager \newline (:Messages Manager), \newline Reporter Manager\\
+        \hline
+        [R\creq] & The system should allow U to interrupt ongoing internships of their S when a complaint was submitted. & Chat Manager \newline (:Messages Manager), \newline Reporter Manager \newline(:Complaint Manager), \newline Notification Manager\\
+        \hline
+        \caption{Traceability Matrix}
+        \label{tab:tracebility_matrix}%
+    \end{longtable}
+\end{center}
