@@ -110,7 +110,7 @@
             name3=Monaco Giorgio - 10775329,
             academicyear=2024-2025,
             version=1.0,
-            releasedate=07/01/2024,
+            releasedate=06/01/2024,
     } % These info will be put into your Title page 
 
 %----------------------------------------------------------------------------
@@ -158,50 +158,12 @@
 
     \chapter{Requirements Traceability}
     \label{ch:requirements_traceability}%
-
     \input{Chapters/4_Requirements_Traceability}
 
 
     \chapter{Implementation, Integration and Test Plan}
     \label{ch:impl_int_test_plan}%
     \input{Chapters/5_Implementation_Integration_Test_Plan}
-
-    \section{Overview and Implementation Plan}
-
-In this chapter it will be described the Implementation, Integration, and Test Plan for the S\&C application. The aim is to ensure that the system is built incrementally, with a focus on reliability, modularity, and ease of testing.
-
-The implementation and integration of the S\&C application will adopt a Bottom-Up strategy. This method begins by focusing on the foundational components located at the lower levels of the uses hierarchy. These modules are the smallest units of functionality that do not depend on other modules. Each module will be tested using dedicated drivers to ensure correctness and reliability before being integrated into the larger system.
-
-As modules are validated, they will replace the corresponding drivers and be incrementally integrated into functional subsystems. This iterative process ensures that each subsystem is tested and functional before further integration. The Bottom-Up strategy facilitates parallel development, allowing different teams to work on separate modules simultaneously, and simplifies debugging by isolating issues within smaller parts of the system.
-
-This strategy promotes incremental progress, enabling the early detection of bugs and providing stakeholders with visible milestones throughout the development process. The result is a robust and well-tested system that meets the application's requirements.
-
-     \section{Features Identification}
-     
-\textbf{[F1] User Registration and Authentication Features}\\
-These are the foundational features of the S\&C application, allowing Students, Companies, and Universities to create accounts and log in. While relatively straightforward to implement, they are critical for the proper functioning of the system as they enable access to all other features. These will be the first features to be implemented to ensure a functional workflow for subsequent development.
-
-\textbf{[F2] Internship Posting Features} \\
-This set includes the ability for Companies to create, edit, and delete internship postings. These features involve write operations to the database and are essential for the application’s core functionality. They must be implemented before features like Matching or Recommendations, as they provide the content on which these features operate.
-
-\textbf{[F3] Profile and Dashboard Features}  
-These features allow Students, Companies, and Universities to view and manage their profiles and dashboards. They include functionalities such as updating personal details, updating the CV,  and accessing recommendations. These features depend on F1 and F2 and are essential for the proper functioning of the matching and interaction features.
-
-\textbf{[F4] Matching and Recommendation Features}  
-This includes the automated recommendation system that suggests internships to Students and profiles to Companies. It also covers the Matching feature, where mutual interest is established between Students and Companies. These features depend on F2 (internship postings) and F3 (profile visibility).
-
-\textbf{[F5] Interaction Features}  
-These include functionalities like viewing recommended profiles, sending internship offers, scheduling interviews, and managing chats between Students and Companies. These features require F3 to be operational and are essential for facilitating communication and decision-making within the platform.
-
-\textbf{[F6] Feedback and Reporting Features}  
-This set includes functionalities for submitting feedback on recommendations, reporting issues during internships, and providing statistical data for system improvement. These features rely on F4 and F5 to gather user interactions and ensure accountability and system refinement.
-
-\textbf{[F7] Notification Features}  
-This final set of features handles notifications for events like new matches, internship offers, interview schedules, or reported issues. Since they depend on the proper functioning of all other features, they will be the last to be developed.
-  
-
-
-    
 
 
     \chapter{Effort Spent}

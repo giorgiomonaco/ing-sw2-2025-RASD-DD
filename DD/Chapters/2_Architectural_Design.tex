@@ -53,9 +53,7 @@ As shown before, this layer contains the Web Application that provides a respons
 \subsection{Web Server}
 \label{subsec:web_server}%
 
-Acts as the intermediary between the web application and the application server, it indeed processes HTTP/HTTPS requests from the web application, forwards requests to the application server and sends back responses.
-
-It ensures secure and reliable communication between the user-facing frontend and backend services.
+Acts as the intermediary between the web application and the application server, it indeed processes HTTP/HTTPS requests from the web application, forwards requests to the application server and sends back responses. It ensures secure and reliable communication between the user-facing frontend and backend services.
 
 
 \subsection{Application Server (Business Logic Layer):}
@@ -68,13 +66,12 @@ As shown before, this layer contain several components:
 The Main Controller serves as the central node for communication and coordination within the Application Server. It ensures the proper routing of data and requests between the Web Server and the various backend managers, acting as the primary mediator between the Web Application and the backend services.
 It simplifies system architecture by managing the complexity of data flow and interactions between components. This design enhances system efficiency and reduces errors, providing a streamlined mechanism for backend operations.
 
-\clearpage % Forza l'inizio di una nuova pagina
 \subsubsection{Account Manager}
          Manages user authentication, account information, including updates and role assignments. It communicates with the Database in order to verify, access, store and delete account information. Indeed, this component is responsible for account creation and for the authentication process.
     
-    \begin{figure}[htbp]
+    \begin{figure}[H]
     \centering
-    \includegraphics[width=\linewidth]{DD/Images/Comp&Sub/Account Manager.png}
+    \includegraphics[width=0.7\linewidth]{DD/Images/Comp&Sub/Account Manager.png}
     \caption{Subcomponent diagram Account Manager}
     \label{fig:account_manager}
     \end{figure}
@@ -88,13 +85,16 @@ It simplifies system architecture by managing the complexity of data flow and in
     \item  \textbf{Student Registration Manager}: it manages the registration and the assignment of the role to new students.
     \end{itemize}
 
+\newpage
+
 \subsubsection{Notification Manager}Processes and sends notifications, in real time as required, to all users. Sends an in-app notification and an email using the interface provided by the email provider.Additionally, it utilizes its own interface to listen for all possible events that may occur.
-   \begin{figure}[htbp]
+   
+\begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{DD/Images/Comp&Sub/NotificationManager.png}
     \caption{Subcomponent diagram Notification Manager}
     \label{fig:notification_manager}
-    \end{figure}
+\end{figure}
     
 It consists of the following subcomponents:
 \begin{itemize}
@@ -104,7 +104,7 @@ It consists of the following subcomponents:
     \end{itemize}
  \clearpage % Forza l'inizio di una nuova pagina
 \subsubsection{Internship Manager} Manages internship listings, including modifications and status updates, while also overseeing the collection of all applications submitted by students.  It communicates with the Database in order to verify, access, store and delete internship information.
-    \begin{figure}[htbp]
+    \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{DD/Images/Comp&Sub/InternshipManager.png}
     \caption{Subcomponent diagram Internship Manager.}
@@ -119,9 +119,9 @@ It consists of the following subcomponents:
 
 \clearpage % Forza l'inizio di una nuova pagina
 \subsubsection{Chat Manager} Facilitates real-time communication among students, companies, and universities by managing messages, interviews, and offers. Additionally, it interacts with the database to verify, access, store, and delete messages along with their associated timestamps. Finally, it is responsible for handling the submission of complaints and, if necessary, closing a chat.
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
-    \includegraphics[width=\linewidth]{DD/Images/Comp&Sub/ChatManager.png}
+    \includegraphics[width=0.8\linewidth]{DD/Images/Comp&Sub/ChatManager.png}
     \caption{Subcomponent diagram Chat Manager.}
     \label{fig:chat_manager}
     \end{figure}
@@ -138,7 +138,7 @@ It consists of the following subcomponents:
 
  
 \subsubsection{Enhance Manager} It aims to provide services integrated with AI Tools to offer suggestions regarding CVs and internship postings.
- \begin{figure}[htbp]
+ \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{DD/Images/Comp&Sub/EnhanceManager.png}
     \caption{Subcomponent diagram Enhance Manager.}
@@ -153,7 +153,7 @@ It consists of the following subcomponents:
     
 
 \subsubsection{Recommendation Manager} It aims to provide personalized suggestions by leveraging external data analytics services and all data stored in the database, in addition to deliver real-time suggestions, it utilizes the notification interface. Finally it also handles feedback's submission.
- \begin{figure}[htbp]
+ \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{DD/Images/Comp&Sub/ReccomandationManager.png}
     \caption{Subcomponent diagram Recomendation Manager.}
@@ -169,7 +169,7 @@ It consists of the following subcomponents:
     
  \clearpage % Forza l'inizio di una nuova pagina
 \subsubsection{Reporter Manager} It is responsible for providing interfaces to the chat for uploading information or submitting complaints during an internship. It is also responsible for managing and storing them, and, if deemed necessary by the university, requesting the closure of the chat through the interface provided by the chat manager.
-\begin{figure}[htbp]
+\begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{DD/Images/Comp&Sub/ComplaintManager.png}
     \caption{Subcomponent diagram Reporter Manager.}
@@ -257,13 +257,13 @@ The deployment view represents the architecture that separates the system into t
 The \textbf{Account Interface}, offered by the Account Manager, helps the Main Controller to manage user account operationns. Its key methods and corresponding functionalities are as follows:
 \begin{itemize}
     \item \texttt{createAccount()}: It allows the callback of a new form to be filled in for account creation via the \textit{Account Manager}.
-    \item \texttt{SignUp(userData)}: It allows managing the user registration process through the \textit{Account Manager}.
-    \item \texttt{selectRole(Role)}: It allows role selection during registration or login by interacting with the \textit{Authenticator}.
-    \item \texttt{login(email, password)}: It allows authenticating the user through the \textit{Authenticator}.
-    \item \texttt{openProfile(profile)}: It allows opening the personal profile page using the \textit{AccountUpdater}.
-    \item \texttt{search(companyName)}: It allows searching for company profiles using the \textit{AccountUpdater}.
-    \item \texttt{ClickOnCompany(company)}: It allows accessing a company’s profile during a search via the \textit{AccountUpdater}.
-    \item \texttt{clickOnProfile(profile)}: It allows viewing another user’s profile using the \textit{AccountUpdater}.
+    \item \texttt{SignUp(userdata UserData)}: It allows managing the user registration process through the \textit{Account Manager}.
+    \item \texttt{selectRole(string Role)}: It allows role selection during registration or login by interacting with the \textit{Authenticator}.
+    \item \texttt{login(String email, String password)}: It allows authenticating the user through the \textit{Authenticator}.
+    \item \texttt{openProfile(profile Profile)}: It allows opening the personal profile page using the \textit{AccountUpdater}.
+    \item \texttt{search(string CompanyName)}: It allows searching for company profiles using the \textit{AccountUpdater}.
+    \item \texttt{ClickOnCompany(profile Company)}: It allows accessing a company’s profile during a search via the \textit{AccountUpdater}.
+    \item \texttt{clickOnProfile(profile Profile)}: It allows viewing another user’s profile using the \textit{AccountUpdater}.
     \item \texttt{clickOnNotification()}: It allows managing notification interactions via the \textit{AccountUpdater}.
 \end{itemize}
 
@@ -271,42 +271,42 @@ The \textbf{Account Interface}, offered by the Account Manager, helps the Main C
 The \textbf{Internship Interface}, offered by Internship Manager, helps the Main Controller in managing internships and candidates. Its methods include:
 \begin{itemize}
     \item \texttt{postInternship()}: It allows the callback of a new internship form to be filled in through the \textit{InternshipUpdater}.
-    \item \texttt{uploadInternship(InternshipData)}: It allows uploading internship details via the \textit{InternshipUpdater}.
-    \item \texttt{InternshipInfo(InternshipData)}: It allows sending a fully compiled form to the \textit{InternshipEnhancer}.
-    \item \texttt{clickOnInsertion(insertion)}: It allows viewing an internship insertion using the \textit{InternshipUpdater}.
+    \item \texttt{uploadInternship(internshipdata InternshipData)}: It allows uploading internship details via the \textit{InternshipUpdater}.
+    \item \texttt{InternshipInfo(internshipdata InternshipData)}: It allows sending a fully compiled form to the \textit{InternshipEnhancer}.
+    \item \texttt{clickOnInsertion(string Insertion)}: It allows viewing an internship insertion using the \textit{InternshipUpdater}.
     \item \texttt{getInsertion()}: It allows fetching personal internship insertions from the \textit{InternshipUpdater}.
-    \item \texttt{apply(internship)}: It allows a student to apply for an internship through the \textit{CandidatesManager}.
-    \item \texttt{getCandidates(internship)}: It allows retrieving a list of candidates using the \textit{CandidatesManager}.
+    \item \texttt{apply(internship Internship)}: It allows a student to apply for an internship through the \textit{CandidatesManager}.
+    \item \texttt{getCandidates(internship Internship)}: It allows retrieving a list of candidates using the \textit{CandidatesManager}.
     \item \texttt{acceptStudent()}: It allows accepting a candidate for an internship via the \textit{CandidatesManager}.
     \item \texttt{clickOnCandidate()}: It allows viewing a candidate’s profile using the \textit{CandidatesManager}.
-    \item \texttt{contactStudent(student)}: It allows contacting a specific student through the \textit{InternshipUpdater}.
-    \item \texttt{accept(Internship)}: It allows accepting an internship application using the \textit{CandidatesManager}.
+    \item \texttt{contactStudent(student Student)}: It allows contacting a specific student through the \textit{InternshipUpdater}.
+    \item \texttt{accept(internship Internship)}: It allows accepting an internship application using the \textit{CandidatesManager}.
 \end{itemize}
 
 \subsection{Enhance Interface}
 The \textbf{Enhance Interface}, offered by Enhancer Manager, helps the Main Controller in  managing the enhancement of CVs. The method is:
 \begin{itemize}
-    \item \texttt{enhance(CV)}: It allows sending a request to enhance a CV to the \textit{InternshipEnhancer}.
+    \item \texttt{enhance(cv CV)}: It allows sending a request to enhance a CV to the \textit{InternshipEnhancer}.
 \end{itemize}
 
 \subsection{Feedback Interface}
 The \textbf{Feedback Interface}, offered by Feedback Manager (Recommendation Manager), helps the Main Controller in handling periodic feedback requests and submission after closing an internship's insertion. Its methods include:
 \begin{itemize}
-    \item \texttt{closeInsertion(insertion)}: It allows closing an internship insertion window and obtaining a periodic feedback request via the \textit{Feedback Manager}.
-    \item \texttt{submitFeedback(feedback)}: It allows submitting feedback using the \textit{Feedback Manager}.
+    \item \texttt{closeInsertion(string Insertion)}: It allows closing an internship insertion window and obtaining a periodic feedback request via the \textit{Feedback Manager}.
+    \item \texttt{submitFeedback(feedback Feedback)}: It allows submitting feedback using the \textit{Feedback Manager}.
 \end{itemize}
 
 \subsection{Chat Interface}
 The \textbf{Chat Interface}, offered by Chat Manager, helps the Main Controller in  facilitating user communication, interviews, and contract offers. It includes:
 \begin{itemize}
     \item \texttt{clickOnChat()}: It allows opening the personal chat page via the \textit{Messages Manager}.
-    \item \texttt{selectChat(company/student)}: It allows opening a chat related to the parameter inserted using the \textit{Messages Manager}.
+    \item \texttt{selectChat(profile Company/Student)}: It allows opening a chat related to the parameter inserted using the \textit{Messages Manager}.
     \item \texttt{clickOnInterview()}: It allows the callback of a new interview form to be filled in via the \textit{Interview Manager}.
-    \item \texttt{scheduleInterview(date, time, InterviewData)}: It allows sending a request to schedule an interview to the \textit{Interview Manager}.
+    \item \texttt{scheduleInterview(date Date,time Time,string InterviewData)}: It allows sending a request to schedule an interview to the \textit{Interview Manager}.
     \item \texttt{acceptInterview()}: It allows accepting a scheduled interview via the \textit{Interview Manager}.
     \item \texttt{declineInterview()}: It allows declining an interview through the \textit{Interview Manager}.
     \item \texttt{clickOnOffer()}: It allows viewing an internship offer using the \textit{Offer Manager}.
-    \item \texttt{proposeInternship(sDate, eDate, InternshipDetails)}: It allows offering an internship contract using the \textit{Offer Manager}.
+    \item \texttt{proposeInternship(date sDate,date eDate,string InternshipDetails)}: It allows offering an internship contract using the \textit{Offer Manager}.
     \item \texttt{acceptOffer()}: It allows accepting an internship offer via the \textit{Offer Manager}.
     \item \texttt{declineOffer()}: It allows declining an offer through the \textit{Offer Manager}.
 \end{itemize}
@@ -315,10 +315,10 @@ The \textbf{Chat Interface}, offered by Chat Manager, helps the Main Controller 
 The \textbf{Report Interface}, offered by Report Manager,helps the Main Controller in managing complaints and information updates. It includes:
 \begin{itemize}
     \item \texttt{clickOnComplaint()}: It allows the callback of a new complaint form to be filled in through the \textit{Complaint Manager}.
-    \item \texttt{submitComplaint(complaint)}: It allows submitting a complaint via the \textit{Complaint Manager}.
+    \item \texttt{submitComplaint(complaint Complaint)}: It allows submitting a complaint via the \textit{Complaint Manager}.
     \item \texttt{clickOnInformation()}: It allows the callback of a new information form to be filled in using the \textit{Information Manager}.
-    \item \texttt{submitInformation(information)}: It allows submitting information through the \textit{Information Manager}.
-    \item \texttt{InterruptInternship(student, internship)}: It allows sendinging a request to interrupt an internship via the \textit{Reporter Manager}.
+    \item \texttt{submitInformation(string Information)}: It allows submitting information through the \textit{Information Manager}.
+    \item \texttt{InterruptInternship(student Student,internship Internship)}: It allows sendinging a request to interrupt an internship via the \textit{Reporter Manager}.
 \end{itemize}
 
 \subsection{Recommendation Interface}
@@ -337,24 +337,24 @@ The \textbf{Notification Interface} handles event-driven notifications. It's off
 The \textbf{Database Interface} provides storage and retrieval operations to all other system's components. Its methods include:
 \begin{itemize}
     \item \texttt{query()}: It allows retrieving data from the database.
-    \item \texttt{createNewAcc(userData)}: It allows the storage of new account details.
-    \item \texttt{addInternship(internship)}: It allows the storage of internship details to the database.
-    \item \texttt{addFeedback(feedback)}: It allows the storage of feedback in the database.
-    \item \texttt{applyInternship(internship)}: It enables the storage of a student's application for an internship.
-    \item \texttt{addInterview(interview)}: It allows storing interview's details in the database.
-    \item \texttt{acceptStudent(student)}: It facilitates the recording of a student's acceptance status and enables the initiation of a chat.
-    \item \texttt{addAcceptedStudent(student, internship)}: It facilitates the documentation of a student's initiation of work for the specified internship..
-    \item \texttt{addEmploymentCOntract(student, internship, sDate, eDate, iNternshipDetails)}: It allows storing contract's details.
-    \item \texttt{ deleteEmployment(student,internship)}: It allows deleting contract's details, in case of interruption.
-    \item \texttt{addComplaint(complaint)}: It allows storing every submitted complaint.
-    \item \texttt{addInfromation(information)}: It enables storing every submitted information in the database.
+    \item \texttt{createNewAcc(userdata UserData)}: It allows the storage of new account details.
+    \item \texttt{addInternship(internship Internship)}: It allows the storage of internship details to the database.
+    \item \texttt{addFeedback(feedback Feedback)}: It allows the storage of feedback in the database.
+    \item \texttt{applyInternship(internship Internship)}: It enables the storage of a student's application for an internship.
+    \item \texttt{addInterview(interview Interview)}: It allows storing interview's details in the database.
+    \item \texttt{acceptStudent(student Student)}: It facilitates the recording of a student's acceptance status and enables the initiation of a chat.
+    \item \texttt{addAcceptedStudent(student Student,internship Internship)}: It facilitates the documentation of a student's initiation of work for the specified internship..
+    \item \texttt{addEmploymentCOntract(string Student,internship Internship,date sDate,date eDate,String internshipDetails)}: It allows storing contract's details.
+    \item \texttt{ deleteEmployment(student Student,internship Internship)}: It allows deleting contract's details, in case of interruption.
+    \item \texttt{addComplaint(complaint Complaint)}: It allows storing every submitted complaint.
+    \item \texttt{addInfromation(string Information)}: It enables storing every submitted information in the database.
 \end{itemize}
 
 \subsection{Calendar Interface}
 The \textbf{Calendar Interface} integrates the \textit{Calendar Manager} with \textit{Chat Manager} for scheduling events on the calendar from the chat page. Methods include:
 \begin{itemize}
-    \item \texttt{addCalendar(interview, date, time)}: It enables the addition of interview schedules to the calendar.
-    \item \texttt{addCalendar(employment, sDate, eDate)}: It allows scheduling internship's start and end date on the calendar.
+    \item \texttt{addCalendar(interview Interview,date Date,time Time)}: It enables the addition of interview schedules to the calendar.
+    \item \texttt{addCalendar(string InternshipDetails,date sDate,date eDate)}: It allows scheduling internship's start and end date on the calendar.
 \end{itemize}
 
 \subsection{Web Server Interface}
@@ -363,15 +363,15 @@ The \textbf{Web Server Interface} provides access to the web application via the
 \subsection{Controller Interface}
 The \textbf{Controller Interface} helps the Web Server to interact wiht the Main Controller.
 \subsection{Display Interface}
-The \textbf{Display Interface}, offered by the Report Manager, allows Chat Manager to retrieve all the information, regarding a chat, managed by the report MAnager. 
+The \textbf{Display Interface}, offered by the Report Manager, allows Chat Manager to retrieve all the information, regarding a chat, managed by the report Manager. 
 \begin{itemize}
-    \item \texttt{getsReport(chat)}: It allows retrieving all the information and complaint submitted in tha chat.
+    \item \texttt{getsReport(chat Chat)}: It allows retrieving all the information and complaint submitted in tha chat.
 \end{itemize}
 
 \subsection{Open Chat Interface}
 The \textbf{Open Chat Interface}, offered by Chat Manager, helps Internship Manager in creating new chat when a candidate is accepted.
 \begin{itemize}
-    \item \texttt{openChat(student)}: It allows the creation of a new chat between company and an accepted candidate.
+    \item \texttt{openChat(student Student)}: It allows the creation of a new chat between company and an accepted candidate.
 \end{itemize}
 
 \subsection{AITools Interface}
