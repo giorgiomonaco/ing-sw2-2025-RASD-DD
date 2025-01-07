@@ -67,7 +67,7 @@ The Main Controller serves as the central node for communication and coordinatio
 It simplifies system architecture by managing the complexity of data flow and interactions between components. This design enhances system efficiency and reduces errors, providing a streamlined mechanism for backend operations.
 
 \subsubsection{Account Manager}
-         Manages user authentication, account information, including updates and role assignments. It communicates with the Database in order to verify, access, store and delete account information. Indeed, this component is responsible for account creation and for the authentication process.
+         The account manager manages user authentication, account information, including updates and role assignments. It communicates with the Database in order to verify, access, store and delete account information.
     
     \begin{figure}[H]
     \centering
@@ -87,7 +87,7 @@ It simplifies system architecture by managing the complexity of data flow and in
 
 \newpage
 
-\subsubsection{Notification Manager}Processes and sends notifications, in real time as required, to all users. Sends an in-app notification and an email using the interface provided by the email provider.Additionally, it utilizes its own interface to listen for all possible events that may occur.
+\subsubsection{Notification Manager}Processes and sends notifications, in real time as required, to all users. Sends an in-app notification and an email using the interface provided by the email provider. Additionally, it utilizes its own interface to listen for all possible events that may occur.
    
 \begin{figure}[H]
     \centering
@@ -99,11 +99,11 @@ It simplifies system architecture by managing the complexity of data flow and in
 It consists of the following subcomponents:
 \begin{itemize}
     \item  \textbf{Notification Planner}: It manages the registration of events that trigger the delivery of notifications.
-    \item  \textbf{Notification Sender}:It handles the actual delivery of notifications to the Web Application.
+    \item  \textbf{Notification Sender}: It handles the actual delivery of notifications to the Web Application.
     \item  \textbf{Events Listener}: It is responsible for detecting the occurrence of events that trigger the notification delivery.
     \end{itemize}
  \clearpage % Forza l'inizio di una nuova pagina
-\subsubsection{Internship Manager} Manages internship listings, including modifications and status updates, while also overseeing the collection of all applications submitted by students.  It communicates with the Database in order to verify, access, store and delete internship information.
+\subsubsection{Internship Manager} Manages internship listings, including modifications and status updates, while also overseeing the collection of all applications submitted by students.  It communicates with the Database in order to verify, access, store and delete internship information. Finally it can use the interface, provided by the Chat Manager, to create a new chat when a new candidate is accepted.
     \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{DD/Images/Comp&Sub/InternshipManager.png}
@@ -118,7 +118,7 @@ It consists of the following subcomponents:
     \end{itemize}
 
 \clearpage % Forza l'inizio di una nuova pagina
-\subsubsection{Chat Manager} Facilitates real-time communication among students, companies, and universities by managing messages, interviews, and offers. Additionally, it interacts with the database to verify, access, store, and delete messages along with their associated timestamps. Finally, it is responsible for handling the submission of complaints and, if necessary, closing a chat.
+\subsubsection{Chat Manager} Facilitates real-time communication among students, companies, and universities by managing messages, interviews, and offers. Additionally, it interacts with the database to verify, access, store, and delete messages along with their associated timestamps. Finally, it is responsible for handling the opening of new chats and, if necessary, can use the display interface to show possible submissions sent through the chat.
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\linewidth]{DD/Images/Comp&Sub/ChatManager.png}
@@ -152,7 +152,7 @@ It consists of the following subcomponents:
     \end{itemize}
     
 
-\subsubsection{Recommendation Manager} It aims to provide personalized suggestions by leveraging external data analytics services and all data stored in the database, in addition to deliver real-time suggestions, it utilizes the notification interface. Finally it also handles feedback's submission.
+\subsubsection{Recommendation Manager} It aims to provide personalized suggestions by leveraging external data analytics services and all data stored in the database, in addition to deliver real-time suggestions, it utilizes the notification interface. Finally it also handles feedback's submission, through the feedback interface, to improve recommendation algorithms.
  \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{DD/Images/Comp&Sub/ReccomandationManager.png}
@@ -168,7 +168,7 @@ It consists of the following subcomponents:
     \end{itemize}
     
  \clearpage % Forza l'inizio di una nuova pagina
-\subsubsection{Reporter Manager} It is responsible for providing interfaces to the chat for uploading information or submitting complaints during an internship. It is also responsible for managing and storing them, and, if deemed necessary by the university, requesting the closure of the chat through the interface provided by the chat manager.
+\subsubsection{Reporter Manager} It is responsible for providing interfaces to the chat for uploading information or submitting complaints during an internship. It is also responsible for managing and storing them and it provides interface to the chat manager in order to show, if needed, the related submissions.
 \begin{figure}[H]
     \centering
     \includegraphics[width=\linewidth]{DD/Images/Comp&Sub/ComplaintManager.png}
@@ -179,7 +179,7 @@ It consists of the following subcomponents:
 It consists of the following subcomponents:
 \begin{itemize}
     \item  \textbf{Information Manager}: it handles every information added through the chat.
-    \item  \textbf{Complaint Manager}: It stores and handles all complaints submitted via the chat and, if necessary, is responsible for closing the chat through the corresponding interface.
+    \item  \textbf{Complaint Manager}: It stores and handles all complaints submitted via the chat.
     \end{itemize}
 
 \clearpage % Forza l'inizio di una nuova pagina
