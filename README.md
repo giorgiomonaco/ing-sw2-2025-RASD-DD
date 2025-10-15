@@ -1,3 +1,11 @@
+## 👥 Contributors
+
+<p align="center">
+  <strong>Margherita Marino</strong><br>
+  <strong>Giorgio Monaco</strong><br>
+  <strong>Alessandro De Matteis</strong><br>
+</p>
+
 # RASD and DD about S&C company
 
 First we wrote the whole document on google docs: https://docs.google.com/document/d/1fTBwh9hfENDHxDvwFYTmkGrcDFI0JyfjdPMQH8h8ZJo/edit?usp=sharing
